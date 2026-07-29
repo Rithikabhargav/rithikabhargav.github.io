@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rithika Bhargav — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e28;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #eef0f6;
+    --muted: #8892a4;
+    --accent: #6c8eff;
+    --accent2: #3dffc0;
+    --tag-bg: rgba(108,142,255,0.12);
+    --tag-text: #8aabff;
+    --radius: 12px;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent2); }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    background: rgba(13,15,20,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent2);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 6rem 0 2rem;
+  }
+
+  /* HERO */
+  #hero {
+    padding-top: 140px;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #8aabff;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .hero-meta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .hero-meta-item svg { opacity: 0.6; }
+
+  /* SECTION HEADING */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .about-card h3 {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .about-card p {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .about-body {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .skill-group-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--mono);
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border2);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-left: -3px;
+  }
+
+  .timeline-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .timeline-company {
+    font-size: 14px;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .timeline-period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .timeline-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .timeline-body ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .timeline-body li {
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-body li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+
+  .project-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+
+  .project-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  /* TESTIMONIALS */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .testimonial-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .testimonial-card.placeholder {
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 200px;
+  }
+
+  .quote-mark {
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.3;
+    font-family: Georgia, serif;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .author-title {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .placeholder-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.4;
+  }
+
+  .placeholder-text {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 220px;
+    line-height: 1.6;
+  }
+
+  /* ACCOMPLISHMENTS */
+  .accomplishments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .accomplishment-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.25rem;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .edu-degree {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .edu-school {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .edu-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .edu-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 8px;
+    background: rgba(61,255,192,0.1);
+    color: var(--accent2);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--mono);
+  }
+
+  /* CONTACT */
+  #contact {
+    padding-bottom: 6rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.2s;
+    text-decoration: none;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent);
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    main { padding: 0 1rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">rithika.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#testimonials">References</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-label">// available for AI/ML internships</p>
+    <h1>Rithika Bhargav<br><span>AI & ML Engineer</span></h1>
+    <p class="hero-sub">
+      Deep learning practitioner with hands-on experience in ADAS, sensor fusion, and real-time inference. Currently completing a PG Diploma in Applied AI at George Brown College, Toronto.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View projects</a>
+      <a href="mailto:rithikabhargav@gmail.com" class="btn btn-outline">Get in touch</a>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Toronto, Canada
+      </span>
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Permanent Resident
+      </span>
+      <span class="hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.5 2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +1 647 996 2250
+      </span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">// 01. about</p>
+    <h2>Background</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Focus area</h3>
+        <p>Computer vision, deep learning, ADAS systems, and real-time model deployment on edge hardware.</p>
+      </div>
+      <div class="about-card">
+        <h3>Currently studying</h3>
+        <p>Applied AI Solutions Development at George Brown College — May 2026 cohort.</p>
+      </div>
+    </div>
+    <p class="about-body">
+      I've spent time building and optimizing production ML systems — from CNN/RNN architectures for automotive object detection at Cyient, to scalable training pipelines using TensorFlow and PyTorch. I care about models that actually work in real hardware constraints, not just benchmark numbers. I'm looking for an internship where I can contribute to meaningful AI problems and keep learning fast.
+    </p>
+
+    <!-- SKILLS -->
+    <div style="margin-top: 3rem;">
+      <p class="section-label">// skills</p>
+      <h2>Technical skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <p class="skill-group-title">ML / AI</p>
+          <div class="skill-tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">TensorRT</span>
+            <span class="tag">CUDA</span>
+            <span class="tag">ROS</span>
+            <span class="tag">MATLAB</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Languages</p>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Angular</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Data & tooling</p>
+          <div class="skill-tags">
+            <span class="tag">MS SQL</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">SAP</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">PyCharm</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Domains</p>
+          <div class="skill-tags">
+            <span class="tag">Sensor fusion</span>
+            <span class="tag">ADAS</span>
+            <span class="tag">Transfer learning</span>
+            <span class="tag">Edge inference</span>
+            <span class="tag">Biometrics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">// 02. experience</p>
+    <h2>Professional experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <p class="timeline-role">Financial Operations Specialist</p>
+          <p class="timeline-company">Procom — Toronto, Canada</p>
+          <p class="timeline-period">June 2025 – Dec 2025 · Contract</p>
+        </div>
+        <div class="timeline-body">
+          <ul>
+            <li>Managed end-to-end billing cycle — timesheet approval, client invoicing, and transaction processing using SAP.</li>
+            <li>Coordinated with clients and internal teams to resolve billing queries and ensure timely payment.</li>
+            <li>Maintained and updated SOPs for billing process efficiency.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <p class="timeline-role">Machine Learning Model Developer — ADAS</p>
+          <p class="timeline-company">Cyient — India</p>
+          <p class="timeline-period">July 2024 – Dec 2024</p>
+        </div>
+        <div class="timeline-body">
+          <ul>
+            <li>Developed and optimized deep learning models for real-time object detection and material volume assessment using large-scale automotive datasets with sensor fusion (camera, LiDAR, RADAR).</li>
+            <li>Integrated and fine-tuned CNN and RNN architectures within ADAS systems for low-latency, high-reliability real-time inference.</li>
+            <li>Applied transfer learning to adapt pre-trained models, significantly reducing development time; collaborated with hardware teams for seamless sensor integration.</li>
+            <li>Built scalable, reproducible training pipelines using TensorFlow and PyTorch to support efficient deployment and maintenance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <p class="timeline-role">Database Developer</p>
+          <p class="timeline-company">LTIMindtree — India</p>
+          <p class="timeline-period">July 2022 – Dec 2023</p>
+        </div>
+        <div class="timeline-body">
+          <ul>
+            <li>Designed, implemented, and maintained secure, high-performance databases with regular backup protocols.</li>
+            <li>Ensured optimal database performance through continuous monitoring, query tuning, and software updates.</li>
+            <li>Investigated and resolved database issues; managed data migrations and access controls for sensitive information.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <p class="timeline-role">ML & AI Application Development Intern</p>
+          <p class="timeline-company">Tequed Labs — India</p>
+          <p class="timeline-period">June 2020 – July 2020</p>
+        </div>
+        <div class="timeline-body">
+          <ul>
+            <li>Built a handwriting and digit recognition system using KNN to classify inputs across 36 classes (0–9, a–z).</li>
+            <li>Implemented adaptive thresholding for pixel-level accuracy in character segmentation.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">// 03. projects</p>
+    <h2>Academic projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">🔍</div>
+        <p class="project-title">Fingerprint Spoof Detection</p>
+        <p class="project-desc">CNN-based system to detect artificially moulded fingerprint spoofing, ensuring accurate biometric authentication. Analyzed finger characteristics to distinguish real from synthetic prints.</p>
+        <div class="project-tags">
+          <span class="tag">CNN</span>
+          <span class="tag">Deep learning</span>
+          <span class="tag">Biometrics</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📦</div>
+        <p class="project-title">Inventory Control System</p>
+        <p class="project-desc">Inventory management system for a department store with full CRUD operations, report generation, and a web interface. Built with Apache, MySQL, PHP, and HTML/CSS.</p>
+        <div class="project-tags">
+          <span class="tag">MySQL</span>
+          <span class="tag">PHP</span>
+          <span class="tag">Apache</span>
+          <span class="tag">DBMS</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">✍️</div>
+        <p class="project-title">Handwriting & Digit Recognition</p>
+        <p class="project-desc">ML system using KNN to classify handwritten digits (0–9) and letters (a–z) with adaptive thresholding for precise pixel-level segmentation.</p>
+        <div class="project-tags">
+          <span class="tag">KNN</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Python</span>
+          <span class="tag">Image processing</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACCOMPLISHMENTS -->
+  <section id="accomplishments">
+    <p class="section-label">// 04. accomplishments</p>
+    <h2>Highlights</h2>
+    <div class="accomplishments-list">
+      <div class="accomplishment-item">🏆 <strong>1st place</strong> — COVID-19 Prediction Hackathon, Tequed Labs</div>
+      <div class="accomplishment-item">🤖 Demonstrated an Arduino-controlled firefighting robot at the <strong>Havells National Conference</strong>; 4th-year project published in UCRT (International Journal of Creative and Research Technology)</div>
+      <div class="accomplishment-item">🎤 Presented at the <strong>International Conference on Emerging Trends in Engineering</strong>, Raja Rajeswari College</div>
+      <div class="accomplishment-item">🛡️ Volunteered at <strong>NCDRC (National Cyber Defence Research Centre)</strong> events; conducted cybersecurity workshops for kids</div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">// 05. education</p>
+    <h2>Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <p class="edu-degree">PG Diploma — Applied AI Solutions Development</p>
+        <p class="edu-school">George Brown College, Toronto</p>
+        <p class="edu-period">May 2026 – Present</p>
+        <span class="edu-badge">In progress</span>
+      </div>
+      <div class="edu-card">
+        <p class="edu-degree">B.Tech — Computer Science</p>
+        <p class="edu-school">Dayananda Sagar Academy of Technology & Management, India</p>
+        <p class="edu-period">Graduated Aug 2022 · GPA 7.65</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS / REFERENCES -->
+  <section id="testimonials">
+    <p class="section-label">// 06. references</p>
+    <h2>Letters of recommendation</h2>
+    <div class="testimonial-grid">
+
+      <!-- Reference 1 placeholder -->
+      <div class="testimonial-card placeholder">
+        <div class="placeholder-icon">📝</div>
+        <p class="placeholder-text">Reference from <strong style="color: var(--text);">Cyient / LTIMindtree</strong> — add a quote and your reference's name here once you have their letter.</p>
+      </div>
+
+      <!-- Reference 2 placeholder -->
+      <div class="testimonial-card placeholder">
+        <div class="placeholder-icon">📝</div>
+        <p class="placeholder-text">Reference from <strong style="color: var(--text);">George Brown College</strong> — add a quote and your professor's name here once confirmed.</p>
+      </div>
+
+    </div>
+
+    <!-- Instructions for filling in -->
+    <div style="margin-top: 1.25rem; padding: 1rem 1.25rem; background: rgba(108,142,255,0.07); border: 1px solid rgba(108,142,255,0.2); border-radius: 10px; font-size: 13px; color: var(--muted);">
+      <strong style="color: var(--accent);">How to add your references:</strong> Open <code style="background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;">index.html</code>, find the two <code style="background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;">testimonial-card placeholder</code> sections, and replace with the testimonial template shown in the HTML comments below them.
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">// 07. contact</p>
+    <h2>Get in touch</h2>
+    <div class="contact-grid">
+      <a href="mailto:rithikabhargav@gmail.com" class="contact-card">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">rithikabhargav@gmail.com</p>
+        </div>
+      </a>
+      <a href="tel:+16479962250" class="contact-card">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.5 2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">Phone</p>
+          <p class="contact-value">+1 647 996 2250</p>
+        </div>
+      </a>
+      <a href="mailto:101669607@georgebrown.ca" class="contact-card">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">College email</p>
+          <p class="contact-value">101669607@georgebrown.ca</p>
+        </div>
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-card">
+        <div class="contact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">LinkedIn</p>
+          <p class="contact-value">Add your LinkedIn URL →</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>built by rithika bhargav · toronto · 2026</span>
+</footer>
+
+</body>
+</html>
