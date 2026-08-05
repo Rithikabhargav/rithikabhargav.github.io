@@ -1,0 +1,20 @@
+# Rithika Bhargav Khandavilli — portfolio
+#
+# The portfolio pages are fine to index. The PDFs are not: the transcript and
+# credential documents contain a full academic record and a student number.
+#
+# !! IMPORTANT — WHERE THIS FILE HAS TO LIVE !!
+# Crawlers only ever read robots.txt from the ROOT of a domain. So this file
+# works at:
+#     https://rithikabhargav.github.io/robots.txt        (repo named rithikabhargav.github.io)
+#     https://rithikabhargav.com/robots.txt              (custom domain)
+# and is SILENTLY IGNORED at:
+#     https://rithikabhargav.github.io/portfolio/robots.txt   (project-page path)
+# If the site stays on the /portfolio path, this file has no effect at all.
+#
+# Also note this only asks search engines not to list the PDFs. It does NOT
+# make them private — anyone with the URL can still open them.
+
+User-agent: *
+Allow: /
+Disallow: /*.pdf$

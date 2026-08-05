@@ -1,970 +1,1528 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rithika Bhargav — AI/ML Engineer</title>
+
+<title>Rithika Bhargav Khandavilli — AI/ML Engineer, Toronto</title>
+<meta name="author" content="Rithika Bhargav Khandavilli">
+<meta name="description" content="AI/ML engineer in Toronto. Deep learning and computer vision for ADAS and real-time inference — TensorFlow, PyTorch, CNNs, TensorRT. Currently in the Applied AI Solutions Development program at George Brown College. Seeking an AI/ML internship.">
+
+<!-- ============================================================
+     Live address. If you later buy a custom domain and point it here,
+     change BOTH of these to it — a canonical pointing at the wrong host
+     tells search engines the real page is somewhere else.
+     ============================================================ -->
+<link rel="canonical" href="https://rithikabhargav.github.io/">
+<meta property="og:url" content="https://rithikabhargav.github.io/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Rithika Bhargav Khandavilli — AI/ML Engineer">
+<meta property="og:site_name" content="Rithika Bhargav Khandavilli">
+<meta property="og:description" content="Deep learning and computer vision for ADAS and real-time inference. Seeking an AI/ML internship in Toronto.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rithika Bhargav Khandavilli — AI/ML Engineer">
+<meta name="twitter:description" content="Deep learning and computer vision for ADAS and real-time inference. Seeking an AI/ML internship in Toronto.">
+
+<meta name="theme-color" content="#ffffff" id="metaTheme">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+
+<!-- Applied before first paint so switching themes never flashes the wrong one.
+     Defaults to LIGHT deliberately — a recruiter should meet the light design
+     first. Swap the fallback for a matchMedia check to follow the OS instead. -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('rb-theme');
+    document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #0d0f14;
-    --surface: #13161e;
-    --surface2: #1a1e28;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #eef0f6;
-    --muted: #8892a4;
-    --accent: #6c8eff;
-    --accent2: #3dffc0;
-    --tag-bg: rgba(108,142,255,0.12);
-    --tag-text: #8aabff;
-    --radius: 12px;
-    --mono: 'JetBrains Mono', monospace;
+  /* ============ THEME TOKENS ============ */
+  :root, [data-theme="light"] {
+    --bg:            #ffffff;
+    --bg-alt:        #f8fafc;
+    --surface:       #ffffff;
+    --surface-2:     #f8fafc;
+    --border:        #e4e7ec;
+    --border-strong: #d0d5dd;
+
+    --heading:       #0b1220;
+    --body:          #475467;
+    --muted:         #667085;
+    --faint:         #5f6878;
+
+    --accent:        #1d4ed8;
+    --accent-hover:  #1739a8;
+    --accent-2:      #7c3aed;
+    --accent-tint:   #eff4ff;
+    --accent-line:   rgba(29,78,216,0.13);
+    /* Foreground for anything sitting ON the accent gradient. White works over
+       the light-mode blue, but the dark theme inverts the accent to a pale blue
+       where white collapses to 2.5:1 — hence a per-theme token. */
+    --on-accent:     #ffffff;
+
+    --success:       #067647;
+    --success-tint:  #ecfdf3;
+    --success-line:  rgba(6,118,71,0.18);
+
+    /* Background: three soft, heavily blurred colour fields behind the hero
+       only. A visible grid was tried here first and rejected — at these
+       opacities it read as graph paper rather than as depth. */
+    --aurora-1:      rgba(29,78,216,0.20);   /* blue,   top-left  */
+    --aurora-2:      rgba(124,58,237,0.15);  /* violet, right     */
+    --aurora-3:      rgba(6,182,212,0.13);   /* cyan,   bottom    */
+    --aurora-blur:   76px;
+
+    --shadow-sm: 0 1px 2px rgba(11,18,32,0.05);
+    --shadow-md: 0 2px 6px -1px rgba(11,18,32,0.07), 0 1px 2px rgba(11,18,32,0.04);
+    --shadow-lg: 0 10px 20px -6px rgba(11,18,32,0.10), 0 3px 8px -4px rgba(11,18,32,0.05);
+    --glow: 0 0 0 1px rgba(29,78,216,0.10), 0 12px 32px -10px rgba(29,78,216,0.28);
+
+    --nav-bg: rgba(255,255,255,0.82);
+
+    /* Tokens consumed by the inline SVG role diagrams */
+    --svg-panel:    #ffffff;
+    --svg-panel-bd: #d0d5dd;
+    --svg-text:     #475467;
+    --svg-cnn:      #eff4ff;
   }
 
-  html { scroll-behavior: smooth; }
+  [data-theme="dark"] {
+    --bg:            #080b16;
+    --bg-alt:        #0c111f;
+    --surface:       #111828;
+    --surface-2:     #161e30;
+    --border:        rgba(255,255,255,0.09);
+    --border-strong: rgba(255,255,255,0.19);
+
+    --heading:       #f4f7fc;
+    --body:          #b3bdd0;
+    --muted:         #9aa6bb;
+    --faint:         #93a0b6;
+
+    --accent:        #7aa2ff;
+    --accent-hover:  #a8c3ff;
+    --accent-2:      #a78bfa;
+    --accent-tint:   rgba(122,162,255,0.13);
+    --accent-line:   rgba(122,162,255,0.24);
+    --on-accent:     #0a0f1c;   /* 7.03:1 on the pale gradient; white would be 2.49:1 */
+
+    --success:       #3ddc97;
+    --success-tint:  rgba(61,220,151,0.12);
+    --success-line:  rgba(61,220,151,0.28);
+
+    /* Pushed harder in dark mode — the same alphas that read as a soft tint
+       on white are almost invisible against #080b16. */
+    --aurora-1:      rgba(58,110,255,0.34);
+    --aurora-2:      rgba(139,92,246,0.28);
+    --aurora-3:      rgba(20,184,166,0.20);
+    --aurora-blur:   90px;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.45);
+    --shadow-lg: 0 12px 26px -8px rgba(0,0,0,0.6);
+    --glow: 0 0 0 1px rgba(122,162,255,0.20), 0 14px 40px -12px rgba(122,162,255,0.30);
+
+    --nav-bg: rgba(8,11,22,0.78);
+
+    --svg-panel:    rgba(255,255,255,0.05);
+    --svg-panel-bd: rgba(255,255,255,0.17);
+    --svg-text:     #b3bdd0;
+    --svg-cnn:      rgba(122,162,255,0.14);
+  }
+
+  :root {
+    --radius: 12px;
+    --radius-lg: 16px;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --nav-h: 68px;
+  }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
   body {
     background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    color: var(--body);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
     line-height: 1.65;
-    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
   }
 
   a { color: var(--accent); text-decoration: none; }
-  a:hover { color: var(--accent2); }
+  a:hover { color: var(--accent-hover); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    height: 60px;
-    background: rgba(13,15,20,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+  .skip-link {
+    position: absolute; left: -9999px; top: 0; z-index: 300;
+    background: var(--accent); color: var(--on-accent);
+    padding: 11px 20px; border-radius: 0 0 8px 0;
+    font-size: 14px; font-weight: 600;
   }
+  .skip-link:focus { left: 0; color: var(--on-accent); }
 
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--accent2);
-    letter-spacing: 0.02em;
+  /* ---------- REVEAL (gated on .js so no-JS keeps everything visible) ---------- */
+  .js .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
   }
+  .js .reveal.is-visible { opacity: 1; transform: none; }
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
+  /* ---------- BACKGROUND (hero only) ---------- */
+  .bg-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .bg-layer i {
+    position: absolute; display: block; border-radius: 50%;
+    filter: blur(var(--aurora-blur));
+    transition: background-color 0.4s ease;
   }
+  .bg-layer i:nth-child(1) { width: 560px; height: 460px; top: -140px;   left: -80px;   background: var(--aurora-1); }
+  .bg-layer i:nth-child(2) { width: 460px; height: 420px; top: 40px;     right: -110px; background: var(--aurora-2); }
+  /* Offset as a percentage, not a fixed px value: this hero is single-column
+     and taller than the two-column version these values came from, and a fixed
+     bottom offset left an unwashed band across the middle. */
+  .bg-layer i:nth-child(3) { width: 460px; height: 380px; bottom: -11%;    left: 30%;     background: var(--aurora-3); }
 
+  /* ---------- NAV ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--nav-h);
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s, box-shadow 0.25s, background-color 0.3s;
+  }
+  header.is-scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
+
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; height: 100%; padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 600; color: var(--heading);
+    letter-spacing: -0.01em; white-space: nowrap;
+  }
+  .nav-brand:hover { color: var(--heading); }
+  .brand-mark {
+    width: 31px; height: 31px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--on-accent); display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; flex-shrink: 0;
+    box-shadow: 0 3px 10px -3px var(--accent);
+  }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
   .nav-links a {
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
+    position: relative; color: var(--muted);
+    font-size: 14.5px; font-weight: 500; transition: color 0.18s; white-space: nowrap;
   }
-
-  .nav-links a:hover { color: var(--text); }
-
-  /* LAYOUT */
-  main {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  .nav-links a:hover { color: var(--heading); }
+  .nav-links a[aria-current="true"] { color: var(--accent); }
+  .nav-links a[aria-current="true"]::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 2px;
   }
-
-  section {
-    padding: 6rem 0 2rem;
+  .theme-toggle {
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 9px; cursor: pointer;
+    background: var(--surface-2); color: var(--muted);
+    border: 1px solid var(--border);
+    transition: color 0.18s, border-color 0.18s, background 0.18s;
   }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent-line); }
+  [data-theme="light"] .icon-moon, [data-theme="dark"] .icon-sun { display: none; }
 
-  /* HERO */
-  #hero {
-    padding-top: 140px;
-    padding-bottom: 4rem;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero-label {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent2);
-    letter-spacing: 0.08em;
-    margin-bottom: 1.25rem;
-  }
-
-  h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.25rem;
-  }
-
-  h1 span { color: var(--accent); }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 2.5rem;
-    line-height: 1.75;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
+  /* ---------- BUTTONS ---------- */
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 9px;
+    font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap;
+    transition: transform 0.18s, box-shadow 0.18s, background 0.18s, border-color 0.18s, color 0.18s;
   }
-
   .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--on-accent); border: none; box-shadow: var(--glow);
+  }
+  .btn-primary:hover { color: var(--on-accent); transform: translateY(-2px); box-shadow: 0 0 0 1px var(--accent), 0 18px 40px -12px var(--accent); }
+  .btn-secondary {
+    background: var(--surface); color: var(--heading);
+    border: 1px solid var(--border-strong); box-shadow: var(--shadow-sm);
+  }
+  .btn-secondary:hover { background: var(--surface-2); color: var(--heading); border-color: var(--accent); transform: translateY(-2px); }
+  .btn-sm { padding: 8px 16px; font-size: 14px; border-radius: 8px; }
+
+  /* ---------- LAYOUT ---------- */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
+  section { padding: 6rem 0; scroll-margin-top: var(--nav-h); position: relative; }
+  .band-alt {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
 
-  .btn-primary:hover {
-    background: #8aabff;
-    color: #fff;
-    transform: translateY(-1px);
+  .section-head { margin-bottom: 3.25rem; max-width: 720px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1rem; padding: 5px 13px;
+    background: var(--accent-tint); border: 1px solid var(--accent-line); border-radius: 999px;
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.3vw, 2.35rem); font-weight: 700;
+    color: var(--heading); letter-spacing: -0.032em; line-height: 1.16;
+  }
+  .section-intro { margin-top: 1rem; font-size: 17px; color: var(--muted); line-height: 1.7; }
+
+  /* ---------- CARD ---------- */
+  .card {
+    position: relative; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.7rem; box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .card-accent::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s cubic-bezier(.22,.61,.36,1);
+  }
+  .card-accent:hover::before { transform: scaleX(1); }
+  .card-accent:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+
+  /* ---------- HERO ---------- */
+  #hero { padding-top: calc(var(--nav-h) + 5.5rem); padding-bottom: 5.5rem; overflow: hidden; }
+  .hero-inner { max-width: 780px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13.5px; font-weight: 600; color: var(--success);
+    background: var(--success-tint); border: 1px solid var(--success-line);
+    padding: 6px 15px 6px 11px; border-radius: 999px; margin-bottom: 1.85rem;
+  }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--success); animation: pulse 2.4s infinite; flex-shrink: 0; }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 var(--success); }
+    70%  { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
   }
 
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
+  .hero-greet {
+    font-family: var(--mono); font-size: 14px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.85rem;
+  }
+  h1 {
+    font-size: clamp(2.3rem, 4.8vw, 3.5rem); font-weight: 800;
+    color: var(--heading); line-height: 1.05; letter-spacing: -0.042em; margin-bottom: 0.75rem;
+  }
+  .hero-role {
+    display: inline-block;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 700; letter-spacing: -0.024em;
+    background: linear-gradient(100deg, var(--accent) 10%, var(--accent-2) 90%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: var(--accent);
+    margin-bottom: 1.75rem;
   }
 
-  .btn-outline:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-1px);
+  /* Introductory statement — a lead line then supporting detail */
+  .hero-lead {
+    font-size: clamp(1.08rem, 1.7vw, 1.22rem); color: var(--heading);
+    font-weight: 500; line-height: 1.6; letter-spacing: -0.012em; margin-bottom: 1.1rem;
   }
+  .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 700px; }
+  .hero-sub + .hero-sub { margin-top: 0.9rem; }
+  .hero-sub strong { color: var(--heading); font-weight: 600; }
+
+  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 2.35rem; }
 
   .hero-meta {
-    margin-top: 3rem;
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
+    margin-top: 2.75rem; padding-top: 1.75rem; border-top: 1px solid var(--border);
+    display: flex; gap: 1.85rem; flex-wrap: wrap;
   }
+  .hero-meta-item { display: flex; align-items: center; gap: 9px; font-size: 14.5px; color: var(--muted); }
+  .hero-meta-item svg { color: var(--faint); flex-shrink: 0; }
+  a.hero-meta-item { color: var(--muted); }
+  a.hero-meta-item:hover, a.hero-meta-item:hover svg { color: var(--accent); }
 
-  .hero-meta-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--muted);
+  /* ---------- CREDIBILITY STRIP ---------- */
+  .cred {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: var(--bg-alt); padding: 2.15rem 0; position: relative; z-index: 1;
   }
-
-  .hero-meta-item svg { opacity: 0.6; }
-
-  /* SECTION HEADING */
-  .section-label {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent2);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+  .cred-label {
+    text-align: center; font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    color: var(--faint); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.35rem;
   }
-
-  h2 {
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
+  .cred-row { display: flex; align-items: center; justify-content: center; gap: 2.25rem 3rem; flex-wrap: wrap; }
+  .cred-row span {
+    font-size: 16.5px; font-weight: 700; color: var(--heading);
+    letter-spacing: 0.01em; opacity: 0.42; transition: opacity 0.25s; white-space: nowrap;
   }
+  .cred-row span:hover { opacity: 0.85; }
 
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+  /* ---------- ABOUT ---------- */
+  .about-layout { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); gap: 3rem; align-items: start; }
+  .prose p { font-size: 16.5px; color: var(--body); line-height: 1.8; }
+  .prose p + p { margin-top: 1.2rem; }
+  .prose strong { color: var(--heading); font-weight: 600; }
+
+  /* Definition lists may only wrap their rows in div elements, never list items. */
+  .fact-list {
+    display: flex; flex-direction: column; gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
   }
+  .fact-list > div { background: var(--surface); padding: 1.2rem 1.4rem; }
+  .fact-list dt { font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .fact-list dd { font-size: 15px; color: var(--body); line-height: 1.6; }
 
-  .about-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-  }
-
-  .about-card h3 {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .about-card p {
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .about-body {
-    color: var(--muted);
-    line-height: 1.8;
-    font-size: 15px;
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .skill-group {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-  }
-
-  .skill-group-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
+  /* ---------- TAGS ---------- */
   .tag {
-    display: inline-block;
-    padding: 4px 10px;
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    font-family: var(--mono);
+    display: inline-block; padding: 4px 11px;
+    background: var(--accent-tint); color: var(--accent);
+    border: 1px solid var(--accent-line); border-radius: 6px;
+    font-size: 13px; font-weight: 500;
   }
 
-  /* EXPERIENCE */
-  .timeline {
-    position: relative;
-    padding-left: 1.5rem;
+  /* ---------- SKILLS ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.3rem; }
+  .skill-group h3 { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 600; color: var(--heading); margin-bottom: 1.15rem; }
+  .skill-icon {
+    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-tint), transparent);
+    border: 1px solid var(--accent-line); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
   }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
 
+  /* ---------- EXPERIENCE ---------- */
+  .timeline { position: relative; padding-left: 2.1rem; }
   .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: var(--border2);
+    content: ''; position: absolute; left: 5px; top: 12px; bottom: 12px; width: 2px;
+    background: linear-gradient(180deg, var(--accent-line), var(--border) 55%, transparent);
   }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 2.5rem;
-  }
-
+  .timeline-item { position: relative; padding-bottom: 3.25rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
   .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -1.5rem;
-    top: 8px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    margin-left: -3px;
+    content: ''; position: absolute; left: -2.1rem; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box;
+    background: var(--bg); border: 2px solid var(--border-strong);
   }
-
-  .timeline-header {
-    margin-bottom: 0.75rem;
+  /* Highlight ML roles — a recruiter scanning top-down should land here first */
+  .timeline-item.is-ml::before {
+    background: var(--accent); border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-tint), 0 0 14px -2px var(--accent);
   }
-
-  .timeline-role {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text);
+  .timeline-role { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 17.5px; font-weight: 700; color: var(--heading); letter-spacing: -0.022em; }
+  .role-pill {
+    font-family: var(--mono); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent);
+    background: var(--accent-tint); border: 1px solid var(--accent-line);
+    padding: 3px 8px; border-radius: 5px;
   }
+  .timeline-company { font-size: 15px; font-weight: 500; color: var(--body); margin-top: 4px; }
+  .timeline-period { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 5px; letter-spacing: 0.02em; }
+  .timeline-body { margin-top: 1.05rem; }
+  .timeline-body ul { list-style: none; }
+  .timeline-body li { position: relative; padding-left: 1.45rem; margin-bottom: 0.55rem; font-size: 15.5px; color: var(--body); line-height: 1.72; }
+  .timeline-body li::before { content: ''; position: absolute; left: 2px; top: 0.68em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.45; }
 
-  .timeline-company {
-    font-size: 14px;
-    color: var(--accent);
-    margin-top: 2px;
+  /* ---------- PER-ROLE DIAGRAMS ---------- */
+  .role-diagram {
+    margin-top: 1.5rem; padding: 1.3rem 1.4rem 1.15rem;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--radius); max-width: 660px;
   }
-
-  .timeline-period {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
+  .role-diagram svg { width: 100%; height: auto; display: block; }
+  .role-diagram figcaption {
+    margin-top: 0.9rem; padding-top: 0.85rem; border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 10.5px; color: var(--faint);
+    letter-spacing: 0.07em; text-transform: uppercase;
   }
+  /* Animated data flow along the connectors */
+  .flow { stroke-dasharray: 5 8; animation: flow 1.6s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -26; } }
+  .flow-1 { animation-delay: 0s; } .flow-2 { animation-delay: -0.55s; } .flow-3 { animation-delay: -1.1s; }
+  .det { opacity: 0; animation: det 3.6s ease-in-out infinite; }
+  .det-1 { animation-delay: 0.2s; } .det-2 { animation-delay: 1.3s; } .det-3 { animation-delay: 2.4s; }
+  @keyframes det { 0%,100% { opacity: 0; } 8%,32% { opacity: 1; } 44% { opacity: 0; } }
 
-  .timeline-body {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-  .timeline-body ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .timeline-body li {
-    padding-left: 1rem;
-    position: relative;
-    margin-bottom: 0.4rem;
-  }
-
-  .timeline-body li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent2);
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .project-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-2px);
-  }
-
+  /* ---------- PROJECTS ---------- */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr)); gap: 1.3rem; }
+  .project-card { display: flex; flex-direction: column; }
   .project-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--tag-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    font-size: 20px;
+    width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-tint), transparent);
+    border: 1px solid var(--accent-line); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem;
+  }
+  .project-meta {
+    font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--faint);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .project-card h3 { font-size: 16.5px; font-weight: 700; color: var(--heading); letter-spacing: -0.022em; margin-bottom: 0.55rem; line-height: 1.35; }
+  .project-desc { font-size: 15px; color: var(--muted); line-height: 1.68; margin-bottom: 1.3rem; flex-grow: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ---------- ACCOMPLISHMENTS ---------- */
+  .achieve-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(335px, 1fr)); gap: 1.05rem; }
+  .achieve-list li {
+    position: relative; overflow: hidden;
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.3rem 1.45rem; box-shadow: var(--shadow-sm);
+    font-size: 15px; color: var(--body); line-height: 1.65;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .achieve-list li:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .achieve-list strong { color: var(--heading); font-weight: 600; }
+  .achieve-icon {
+    width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-tint), transparent);
+    border: 1px solid var(--accent-line); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
   }
 
-  .project-title {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-  }
-
-  .project-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-    margin-bottom: 1rem;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  /* TESTIMONIALS */
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .testimonial-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2rem;
-    position: relative;
-  }
-
-  .testimonial-card.placeholder {
-    border-style: dashed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 200px;
-  }
-
-  .quote-mark {
-    font-size: 4rem;
-    line-height: 1;
-    color: var(--accent);
-    opacity: 0.3;
-    font-family: Georgia, serif;
-    position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-  }
-
-  .testimonial-text {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    padding-top: 1.5rem;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .author-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--tag-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .author-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .author-title {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .placeholder-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-    opacity: 0.4;
-  }
-
-  .placeholder-text {
-    font-size: 14px;
-    color: var(--muted);
-    max-width: 220px;
-    line-height: 1.6;
-  }
-
-  /* ACCOMPLISHMENTS */
-  .accomplishments-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .accomplishment-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent2);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 1rem 1.25rem;
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* EDUCATION */
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .edu-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-  }
-
-  .edu-degree {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .edu-school {
-    font-size: 13px;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-
-  .edu-period {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
-
+  /* ---------- EDUCATION ---------- */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(305px, 1fr)); gap: 1.3rem; align-items: start; }
+  .edu-card h3 { font-size: 16.5px; font-weight: 700; color: var(--heading); letter-spacing: -0.022em; line-height: 1.35; margin-bottom: 0.45rem; }
+  .edu-school { font-size: 15px; font-weight: 500; color: var(--body); }
+  .edu-period { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 5px; letter-spacing: 0.02em; }
   .edu-badge {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 3px 8px;
-    background: rgba(61,255,192,0.1);
-    color: var(--accent2);
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: var(--mono);
+    display: inline-block; margin-top: 0.95rem; padding: 3px 11px;
+    background: var(--success-tint); color: var(--success);
+    border: 1px solid var(--success-line); border-radius: 5px;
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
   }
-
-  /* CONTACT */
-  #contact {
-    padding-bottom: 6rem;
+  .coursework-label {
+    margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;
   }
+  .coursework { list-style: none; }
+  .coursework li { position: relative; padding-left: 1.45rem; margin-bottom: 0.45rem; font-size: 14.5px; color: var(--muted); line-height: 1.62; }
+  .coursework li::before { content: ''; position: absolute; left: 2px; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.45; }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+  /* ---------- SUB-HEADING (used inside a section, below its h2) ---------- */
+  .sub-head {
+    margin-top: 3rem; margin-bottom: 0.4rem;
+    font-size: 1.15rem; font-weight: 700; color: var(--heading); letter-spacing: -0.022em;
   }
+  .sub-note { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 700px; }
 
-  .contact-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: border-color 0.2s;
-    text-decoration: none;
+  /* Document download tiles reuse the contact-tile treatment.
+     Flex rather than grid so that a single tile stays card-width instead of
+     stretching across the whole row — the count here grows over time. */
+  .doc-grid { display: flex; flex-wrap: wrap; gap: 1.15rem; margin-top: 1.5rem; }
+  .doc-grid > a { flex: 1 1 275px; max-width: 380px; }
+
+  /* ---------- REFERENCES ---------- */
+  .ref-note { display: flex; gap: 1.2rem; align-items: flex-start; max-width: 760px; }
+  .ref-icon {
+    width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-tint), transparent);
+    border: 1px solid var(--accent-line); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
   }
+  .ref-note h3 { font-size: 16.5px; font-weight: 700; color: var(--heading); margin-bottom: 0.45rem; letter-spacing: -0.022em; }
+  .ref-note p { font-size: 15.5px; color: var(--muted); line-height: 1.72; }
 
-  .contact-card:hover {
-    border-color: var(--accent);
+  /* Testimonial cards — used once real quotes are added (see markup comment) */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(325px, 1fr)); gap: 1.3rem; margin-bottom: 1.3rem; }
+  .testimonial-card { padding: 1.9rem; }
+  .testimonial-text { font-size: 15.5px; color: var(--body); line-height: 1.76; margin-bottom: 1.55rem; }
+  .testimonial-text::before { content: '\201C'; } .testimonial-text::after { content: '\201D'; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent);
+    display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
   }
+  .author-name { font-size: 15px; font-weight: 600; color: var(--heading); }
+  .author-title { font-size: 13.5px; color: var(--muted); }
 
+  /* ---------- CONTACT ---------- */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.2rem; }
+  .contact-card { display: flex; align-items: center; gap: 1.05rem; }
   .contact-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--tag-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-tint), transparent);
+    border: 1px solid var(--accent-line); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* These sit inside an inline span wrapper, so they must be blockified to
+     stack — an inline span would also silently drop the margin. */
+  .contact-label { display: block; font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+  .contact-value { display: block; font-size: 15px; font-weight: 500; color: var(--heading); word-break: break-word; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--border); background: var(--bg-alt); padding: 2.4rem 0; }
+  .footer-inner {
+    max-width: 1160px; margin: 0 auto; padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap; font-size: 14px; color: var(--muted);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1000px) { .about-layout { grid-template-columns: 1fr; gap: 2.25rem; } }
+  @media (max-width: 900px) { .nav-links { display: none; } }
+  @media (max-width: 640px) {
+    body { font-size: 15.5px; }
+    .nav-inner, .container, .footer-inner { padding: 0 1.35rem; }
+    section { padding: 4rem 0; }
+    #hero { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 3.5rem; }
+    .section-head { margin-bottom: 2.35rem; }
+    .hero-meta { gap: 0.8rem 1.5rem; margin-top: 2.25rem; }
+    .btn { flex: 1 1 auto; justify-content: center; }
+    .timeline { padding-left: 1.7rem; }
+    .timeline-item::before { left: -1.7rem; }
+    .role-diagram { padding: 1rem 0.95rem 0.9rem; }
+    .cred-row { gap: 1.35rem 2rem; }
+    .cred-row span { font-size: 14px; }
+    .footer-inner { justify-content: center; text-align: center; }
   }
 
-  .contact-label {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 2px;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .js .reveal { opacity: 1 !important; transform: none !important; }
   }
 
-  .contact-value {
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-    font-family: var(--mono);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    nav { padding: 0 1rem; }
-    .nav-links { gap: 1rem; }
-    main { padding: 0 1rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 2rem; }
+  /* ---------- PRINT — force the light palette regardless of theme ---------- */
+  @media print {
+    :root, [data-theme="dark"] {
+      --bg: #fff; --bg-alt: #fff; --surface: #fff; --surface-2: #fff;
+      --border: #ccc; --border-strong: #999;
+      --heading: #000; --body: #222; --muted: #333; --faint: #555;
+      --accent: #1739a8; --accent-2: #1739a8; --accent-tint: #fff; --accent-line: #ccc;
+      --on-accent: #fff;
+      --success: #05603a; --success-tint: #fff; --success-line: #ccc;
+      --svg-panel: #fff; --svg-panel-bd: #999; --svg-text: #222; --svg-cnn: #fff;
+    }
+    header, .skip-link, .hero-cta, .bg-layer, .footer-links, .theme-toggle { display: none !important; }
+    body { font-size: 10.5pt; background: #fff; }
+    .js .reveal { opacity: 1 !important; transform: none !important; }
+    section { padding: 0.9rem 0; page-break-inside: avoid; }
+    #hero { padding-top: 0; }
+    .about-layout { display: block; }
+    .container, .footer-inner { max-width: none; padding: 0; }
+    .card, .achieve-list li, .fact-list, .role-diagram { box-shadow: none; border: 1px solid #ccc; }
+    .hero-role { -webkit-text-fill-color: #1739a8; color: #1739a8; background: none; }
+    a { color: #1739a8; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <span class="nav-logo">rithika.dev</span>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#testimonials">References</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<main>
+<!-- Shared SVG paint servers for the role diagrams. Defined once here rather
+     than inside one diagram's <defs>, because four separate inline SVGs
+     reference them and the first one appears earlier in the document.
+     Sized 0x0 and positioned absolutely rather than display:none, so the
+     var() colours inside still resolve. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gradC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="var(--accent)"/>
+      <stop offset="100%" stop-color="var(--accent-2)"/>
+    </linearGradient>
+    <filter id="glowC" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
 
-  <!-- HERO -->
+<header id="siteHeader">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      Rithika Bhargav
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="resume.pdf" class="btn btn-primary btn-sm" download="Rithika_Bhargav_Khandavilli_Resume.pdf">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Résumé
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
   <section id="hero">
-    <p class="hero-label">// available for AI/ML internships</p>
-    <h1>Rithika Bhargav<br><span>AI & ML Engineer</span></h1>
-    <p class="hero-sub">
-      Deep learning practitioner with hands-on experience in ADAS, sensor fusion, and real-time inference. Currently completing a PG Diploma in Applied AI at George Brown College, Toronto.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View projects</a>
-      <a href="mailto:rithikabhargav@gmail.com" class="btn btn-outline">Get in touch</a>
-    </div>
-    <div class="hero-meta">
-      <span class="hero-meta-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Toronto, Canada
-      </span>
-      <span class="hero-meta-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        Permanent Resident
-      </span>
-      <span class="hero-meta-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.5 2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        +1 647 996 2250
-      </span>
+    <div class="bg-layer" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="container">
+      <div class="hero-inner">
+        <p class="badge"><span class="pulse" aria-hidden="true"></span>Available for AI/ML internships</p>
+
+        <!-- OPTIONAL — professional headshot. Save a square photo as headshot.jpg
+             in this folder and uncomment. Recruiters respond well to a face.
+        <img src="headshot.jpg" alt="Rithika Bhargav Khandavilli"
+             width="104" height="104"
+             style="border-radius:50%;object-fit:cover;margin-bottom:1.5rem;box-shadow:0 8px 24px rgba(11,18,32,.16)">
+        -->
+
+        <p class="hero-greet">Hello — I'm Rithika.</p>
+        <h1>Rithika Bhargav Khandavilli</h1>
+        <p class="hero-role">AI &amp; Machine Learning Engineer</p>
+
+        <p class="hero-lead">
+          I build computer vision systems that have to work outside a notebook — on real sensor data, on real hardware, inside a real latency budget.
+        </p>
+        <p class="hero-sub">
+          At <strong>Cyient</strong> that meant deep learning models for object detection and multi-sensor fusion in ADAS systems, trained in TensorFlow and PyTorch, then optimised with CUDA and TensorRT until they were fast enough to act on. Before that, eighteen months of database engineering taught me why most model problems are really data problems.
+        </p>
+        <p class="hero-sub">
+          I'm now completing a <strong>Post Graduate Diploma in Applied AI Solutions Development</strong> at George Brown College in Toronto, and looking for an internship where I can keep building things that ship.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#experience" class="btn btn-primary">View my experience</a>
+          <a href="resume.pdf" class="btn btn-secondary" download="Rithika_Bhargav_Khandavilli_Resume.pdf">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download résumé
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span class="hero-meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Toronto, Canada
+          </span>
+          <span class="hero-meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            Permanent Resident
+          </span>
+          <a href="tel:+16479962250" class="hero-meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.5 2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +1 647 996 2250
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ============ CREDIBILITY STRIP (reverse-chronological) ============ -->
+  <div class="cred">
+    <div class="container">
+      <p class="cred-label">Experience &amp; education</p>
+      <div class="cred-row reveal">
+        <span>George Brown College</span>
+        <span>Procom</span>
+        <span>Cyient</span>
+        <span>LTIMindtree</span>
+        <span>Tequed Labs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
   <section id="about">
-    <p class="section-label">// 01. about</p>
-    <h2>Background</h2>
-    <div class="about-grid">
-      <div class="about-card">
-        <h3>Focus area</h3>
-        <p>Computer vision, deep learning, ADAS systems, and real-time model deployment on edge hardware.</p>
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">About</p>
+        <h2>Background</h2>
       </div>
-      <div class="about-card">
-        <h3>Currently studying</h3>
-        <p>Applied AI Solutions Development at George Brown College — May 2026 cohort.</p>
+
+      <div class="about-layout">
+        <div class="prose reveal">
+          <p>
+            I develop deep learning systems for settings where accuracy alone is not enough. At <strong>Cyient</strong> I built and optimised CNN and RNN models for real-time object detection and material volume assessment, working with large-scale automotive datasets that fused <strong>camera, LiDAR and RADAR</strong> inputs. Those models were integrated directly into ADAS systems, where inference must complete inside a fixed latency budget to be of any use. Applying transfer learning to pre-trained backbones let me reach target accuracy considerably faster than training from scratch.
+          </p>
+          <p>
+            That work rests on a data engineering foundation. Eighteen months as a <strong>database developer at LTIMindtree</strong> — schema design, query tuning, migrations and access control for sensitive data — gave me a practical understanding of how data quality determines model quality. I build the full pipeline rather than just the model: ETL, exploratory analysis, feature selection, training, validation and evaluation, structured so that results are reproducible.
+          </p>
+          <p>
+            I am currently completing a <strong>Post Graduate Diploma in Applied AI Solutions Development</strong> at George Brown College, and I am seeking an AI/ML internship in the Greater Toronto Area where I can contribute to systems that reach production.
+          </p>
+        </div>
+
+        <!-- Definition lists may only wrap their rows in div elements,
+             never list items — so each fact below uses a plain div. -->
+        <dl class="fact-list reveal">
+          <div>
+            <dt>Focus area</dt>
+            <dd>Computer vision, deep learning, and real-time model deployment on edge hardware.</dd>
+          </div>
+          <div>
+            <dt>Currently studying</dt>
+            <dd>Applied AI Solutions Development (T431), George Brown College, Toronto.</dd>
+          </div>
+          <div>
+            <dt>Work authorization</dt>
+            <dd>Canadian Permanent Resident — eligible to work without sponsorship or a permit.</dd>
+          </div>
+          <div>
+            <dt>Open to</dt>
+            <dd>AI/ML internships and co-op placements in the Greater Toronto Area, on site or hybrid.</dd>
+          </div>
+        </dl>
       </div>
     </div>
-    <p class="about-body">
-      I've spent time building and optimizing production ML systems — from CNN/RNN architectures for automotive object detection at Cyient, to scalable training pipelines using TensorFlow and PyTorch. I care about models that actually work in real hardware constraints, not just benchmark numbers. I'm looking for an internship where I can contribute to meaningful AI problems and keep learning fast.
-    </p>
+  </section>
 
-    <!-- SKILLS -->
-    <div style="margin-top: 3rem;">
-      <p class="section-label">// skills</p>
-      <h2>Technical skills</h2>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <p class="skill-group-title">ML / AI</p>
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" class="band-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Skills</p>
+        <h2>Technical skills</h2>
+      </div>
+
+      <div class="skills-grid reveal">
+        <div class="card card-accent skill-group">
+          <h3>
+            <span class="skill-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M19.1 4.9l-2.9 2.9M7.8 16.2l-2.9 2.9"/></svg></span>
+            Machine learning &amp; AI
+          </h3>
           <div class="skill-tags">
-            <span class="tag">TensorFlow</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">TensorRT</span>
-            <span class="tag">CUDA</span>
-            <span class="tag">ROS</span>
-            <span class="tag">MATLAB</span>
+            <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">CNNs</span>
+            <span class="tag">RNNs</span><span class="tag">Transfer learning</span>
+            <span class="tag">Computer vision</span><span class="tag">OpenCV</span>
           </div>
         </div>
-        <div class="skill-group">
-          <p class="skill-group-title">Languages</p>
+
+        <div class="card card-accent skill-group">
+          <h3>
+            <span class="skill-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-5 3 3 5-7"/></svg></span>
+            ML engineering
+          </h3>
           <div class="skill-tags">
-            <span class="tag">Python</span>
-            <span class="tag">C++</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">Angular</span>
+            <span class="tag">ETL pipelines</span><span class="tag">Feature engineering</span><span class="tag">EDA</span>
+            <span class="tag">Hyperparameter tuning</span><span class="tag">Model evaluation</span><span class="tag">Reproducibility</span>
           </div>
         </div>
-        <div class="skill-group">
-          <p class="skill-group-title">Data & tooling</p>
+
+        <div class="card card-accent skill-group">
+          <h3>
+            <span class="skill-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+            Languages
+          </h3>
           <div class="skill-tags">
-            <span class="tag">MS SQL</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">SAP</span>
-            <span class="tag">VS Code</span>
-            <span class="tag">PyCharm</span>
+            <span class="tag">Python</span><span class="tag">C++</span><span class="tag">SQL</span>
+            <span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span>
           </div>
         </div>
-        <div class="skill-group">
-          <p class="skill-group-title">Domains</p>
+
+        <div class="card card-accent skill-group">
+          <h3>
+            <span class="skill-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+            Deployment &amp; hardware
+          </h3>
           <div class="skill-tags">
-            <span class="tag">Sensor fusion</span>
-            <span class="tag">ADAS</span>
-            <span class="tag">Transfer learning</span>
-            <span class="tag">Edge inference</span>
-            <span class="tag">Biometrics</span>
+            <span class="tag">CUDA</span><span class="tag">TensorRT</span><span class="tag">Edge inference</span>
+            <span class="tag">Sensor fusion</span><span class="tag">ADAS</span>
+          </div>
+        </div>
+
+        <div class="card card-accent skill-group">
+          <h3>
+            <span class="skill-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg></span>
+            Data &amp; tooling
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">MySQL</span><span class="tag">Database design</span><span class="tag">SAP</span>
+            <span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">Visual Studio</span><span class="tag">PyCharm</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+  <!-- ============ EXPERIENCE ============
+       Each role carries a small diagram of the system that role actually
+       worked on. All fills reference theme tokens so they follow light/dark. -->
   <section id="experience">
-    <p class="section-label">// 02. experience</p>
-    <h2>Professional experience</h2>
-    <div class="timeline">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>Professional experience</h2>
+        <p class="section-intro">Each role below includes a diagram of the pipeline I worked on.</p>
+      </div>
 
-      <div class="timeline-item">
-        <div class="timeline-header">
+      <div class="timeline reveal">
+
+        <!-- === PROCOM === -->
+        <div class="timeline-item">
           <p class="timeline-role">Financial Operations Specialist</p>
           <p class="timeline-company">Procom — Toronto, Canada</p>
-          <p class="timeline-period">June 2025 – Dec 2025 · Contract</p>
-        </div>
-        <div class="timeline-body">
-          <ul>
-            <li>Managed end-to-end billing cycle — timesheet approval, client invoicing, and transaction processing using SAP.</li>
-            <li>Coordinated with clients and internal teams to resolve billing queries and ensure timely payment.</li>
-            <li>Maintained and updated SOPs for billing process efficiency.</li>
-          </ul>
-        </div>
-      </div>
+          <p class="timeline-period">Jun 2025 – Dec 2025 · Contract</p>
+          <div class="timeline-body">
+            <ul>
+              <li>Ran the end-to-end billing cycle — timesheet approvals, client invoicing, and transaction processing in SAP.</li>
+              <li>Coordinated with clients and internal teams to resolve billing inquiries and keep payments on schedule.</li>
+              <li>Maintained and updated SOPs to support efficient, compliant billing operations.</li>
+            </ul>
+          </div>
 
-      <div class="timeline-item">
-        <div class="timeline-header">
-          <p class="timeline-role">Machine Learning Model Developer — ADAS</p>
+          <figure class="role-diagram">
+            <svg viewBox="0 0 620 62" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="Billing cycle: timesheets, then approvals, then SAP invoicing, then payment reconciliation.">
+              <g font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--svg-text)" text-anchor="middle">
+                <rect x="0"   y="14" width="130" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="65"  y="35">TIMESHEETS</text>
+                <rect x="163" y="14" width="130" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="228" y="35">APPROVALS</text>
+                <rect x="489" y="14" width="130" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="554" y="35">PAYMENT</text>
+              </g>
+              <rect x="326" y="14" width="130" height="34" rx="8" fill="url(#gradC)"/>
+              <text x="391" y="35" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--on-accent)" text-anchor="middle" font-weight="500">SAP INVOICE</text>
+              <g stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6">
+                <path class="flow flow-1" d="M130 31 L163 31"/>
+                <path class="flow flow-2" d="M293 31 L326 31"/>
+                <path class="flow flow-3" d="M456 31 L489 31"/>
+              </g>
+            </svg>
+            <figcaption>Billing cycle · SAP</figcaption>
+          </figure>
+        </div>
+
+        <!-- === CYIENT === -->
+        <div class="timeline-item is-ml">
+          <p class="timeline-role">Machine Learning Model Developer — ADAS <span class="role-pill">ML / AI</span></p>
           <p class="timeline-company">Cyient — India</p>
-          <p class="timeline-period">July 2024 – Dec 2024</p>
-        </div>
-        <div class="timeline-body">
-          <ul>
-            <li>Developed and optimized deep learning models for real-time object detection and material volume assessment using large-scale automotive datasets with sensor fusion (camera, LiDAR, RADAR).</li>
-            <li>Integrated and fine-tuned CNN and RNN architectures within ADAS systems for low-latency, high-reliability real-time inference.</li>
-            <li>Applied transfer learning to adapt pre-trained models, significantly reducing development time; collaborated with hardware teams for seamless sensor integration.</li>
-            <li>Built scalable, reproducible training pipelines using TensorFlow and PyTorch to support efficient deployment and maintenance.</li>
-          </ul>
-        </div>
-      </div>
+          <p class="timeline-period">Jul 2024 – Dec 2024</p>
+          <div class="timeline-body">
+            <ul>
+              <li>Developed and optimised deep learning models for real-time object detection and material volume assessment on large-scale automotive datasets with sensor fusion across camera, LiDAR and RADAR.</li>
+              <li>Integrated and fine-tuned CNN and RNN architectures inside ADAS systems, targeting low-latency, high-reliability inference.</li>
+              <li>Applied transfer learning to adapt pre-trained models, substantially reducing development time, and worked with hardware teams on sensor integration.</li>
+              <li>Built scalable, reproducible training pipelines in TensorFlow and PyTorch to support ongoing deployment and maintenance.</li>
+            </ul>
+          </div>
 
-      <div class="timeline-item">
-        <div class="timeline-header">
+          <figure class="role-diagram">
+            <svg viewBox="0 0 620 96" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="Perception pipeline: camera, LiDAR and RADAR inputs feed a sensor fusion stage, then a CNN and RNN backbone, producing real-time object detections.">
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="var(--svg-text)">
+                <rect x="0" y="2"  width="96" height="24" rx="6" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <circle cx="14" cy="14" r="3" fill="var(--accent)"/><text x="24" y="17">CAMERA</text>
+                <rect x="0" y="36" width="96" height="24" rx="6" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <circle cx="14" cy="48" r="3" fill="var(--accent)"/><text x="24" y="51">LiDAR</text>
+                <rect x="0" y="70" width="96" height="24" rx="6" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <circle cx="14" cy="82" r="3" fill="var(--accent)"/><text x="24" y="85">RADAR</text>
+              </g>
+
+              <g stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6">
+                <path class="flow flow-1" d="M96 14 C126 14 126 40 152 40"/>
+                <path class="flow flow-2" d="M96 48 L152 48"/>
+                <path class="flow flow-3" d="M96 82 C126 82 126 56 152 56"/>
+              </g>
+
+              <g filter="url(#glowC)">
+                <rect x="152" y="26" width="106" height="44" rx="9" fill="url(#gradC)"/>
+              </g>
+              <g font-family="JetBrains Mono, monospace" fill="var(--on-accent)" text-anchor="middle">
+                <text x="205" y="44" font-size="8.5" opacity="0.82">SENSOR</text>
+                <text x="205" y="57" font-size="10" font-weight="500">FUSION</text>
+              </g>
+
+              <path class="flow" d="M258 48 L296 48" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
+
+              <rect x="296" y="26" width="104" height="44" rx="9" fill="var(--svg-cnn)" stroke="var(--accent)" stroke-opacity="0.4"/>
+              <g stroke="var(--accent)" stroke-width="1.3" opacity="0.75">
+                <line x1="312" y1="36" x2="312" y2="60"/><line x1="322" y1="40" x2="322" y2="56"/>
+                <line x1="332" y1="36" x2="332" y2="60"/>
+              </g>
+              <text x="368" y="52" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--accent)" text-anchor="middle">CNN+RNN</text>
+
+              <path class="flow" d="M400 48 L438 48" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
+
+              <rect x="438" y="20" width="182" height="56" rx="9" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+              <g stroke="var(--success)" stroke-width="1.5" fill="var(--success)" fill-opacity="0.12">
+                <rect class="det det-1" x="452" y="32" width="34" height="26" rx="2"/>
+                <rect class="det det-2" x="498" y="38" width="26" height="20" rx="2"/>
+                <rect class="det det-3" x="536" y="30" width="24" height="30" rx="2"/>
+              </g>
+              <text x="590" y="70" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--success)" text-anchor="end">DETECTIONS</text>
+            </svg>
+            <figcaption>ADAS perception · camera · LiDAR · RADAR</figcaption>
+          </figure>
+        </div>
+
+        <!-- === LTIMINDTREE === -->
+        <div class="timeline-item">
           <p class="timeline-role">Database Developer</p>
           <p class="timeline-company">LTIMindtree — India</p>
-          <p class="timeline-period">July 2022 – Dec 2023</p>
-        </div>
-        <div class="timeline-body">
-          <ul>
-            <li>Designed, implemented, and maintained secure, high-performance databases with regular backup protocols.</li>
-            <li>Ensured optimal database performance through continuous monitoring, query tuning, and software updates.</li>
-            <li>Investigated and resolved database issues; managed data migrations and access controls for sensitive information.</li>
-          </ul>
-        </div>
-      </div>
+          <p class="timeline-period">Jul 2022 – Dec 2023</p>
+          <div class="timeline-body">
+            <ul>
+              <li>Designed, implemented, and maintained secure, high-performance databases with regular backup protocols.</li>
+              <li>Sustained database performance through continuous monitoring, query tuning, and scheduled updates.</li>
+              <li>Investigated and resolved database issues; managed data migrations and access controls for sensitive information.</li>
+            </ul>
+          </div>
 
-      <div class="timeline-item">
-        <div class="timeline-header">
-          <p class="timeline-role">ML & AI Application Development Intern</p>
+          <figure class="role-diagram">
+            <svg viewBox="0 0 620 96" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="Database work: schema design, query tuning and backup protocols feeding a secure database, then migrations and access control.">
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="var(--svg-text)">
+                <rect x="0" y="2"  width="104" height="24" rx="6" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <circle cx="14" cy="14" r="3" fill="var(--accent)"/><text x="24" y="17">SCHEMA</text>
+                <rect x="0" y="36" width="104" height="24" rx="6" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <circle cx="14" cy="48" r="3" fill="var(--accent)"/><text x="24" y="51">TUNING</text>
+                <rect x="0" y="70" width="104" height="24" rx="6" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <circle cx="14" cy="82" r="3" fill="var(--accent)"/><text x="24" y="85">BACKUPS</text>
+              </g>
+
+              <g stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6">
+                <path class="flow flow-1" d="M104 14 C134 14 134 40 160 40"/>
+                <path class="flow flow-2" d="M104 48 L160 48"/>
+                <path class="flow flow-3" d="M104 82 C134 82 134 56 160 56"/>
+              </g>
+
+              <g filter="url(#glowC)">
+                <rect x="160" y="26" width="112" height="44" rx="9" fill="url(#gradC)"/>
+              </g>
+              <g font-family="JetBrains Mono, monospace" fill="var(--on-accent)" text-anchor="middle">
+                <text x="216" y="44" font-size="8.5" opacity="0.82">SECURE</text>
+                <text x="216" y="57" font-size="10" font-weight="500">DATABASE</text>
+              </g>
+
+              <path class="flow" d="M272 48 L310 48" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
+
+              <g font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--svg-text)" text-anchor="middle">
+                <rect x="310" y="31" width="140" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="380" y="52">MIGRATIONS</text>
+                <rect x="480" y="31" width="140" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="550" y="52">ACCESS CONTROL</text>
+              </g>
+              <path class="flow flow-2" d="M450 48 L480 48" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+            <figcaption>Data platform · MS SQL · MySQL</figcaption>
+          </figure>
+        </div>
+
+        <!-- === TEQUED LABS === -->
+        <div class="timeline-item is-ml">
+          <p class="timeline-role">ML &amp; AI Application Development Intern <span class="role-pill">ML / AI</span></p>
           <p class="timeline-company">Tequed Labs — India</p>
-          <p class="timeline-period">June 2020 – July 2020</p>
+          <p class="timeline-period">Jun 2020 – Jul 2020</p>
+          <div class="timeline-body">
+            <ul>
+              <li>Built a handwriting and digit recognition system using K-Nearest Neighbours to classify inputs across 36 classes (0–9, a–z).</li>
+              <li>Implemented adaptive thresholding for pixel-level accuracy in character segmentation.</li>
+            </ul>
+          </div>
+
+          <figure class="role-diagram">
+            <svg viewBox="0 0 620 62" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="Handwriting recognition pipeline: scanned input, adaptive thresholding, character segmentation, then a K-Nearest Neighbours classifier over 36 classes.">
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="var(--svg-text)" text-anchor="middle">
+                <rect x="0"   y="14" width="130" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="65"  y="35">SCANNED INPUT</text>
+                <rect x="163" y="14" width="130" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="228" y="31">ADAPTIVE</text><text x="228" y="41">THRESHOLD</text>
+                <rect x="326" y="14" width="130" height="34" rx="8" fill="var(--svg-panel)" stroke="var(--svg-panel-bd)"/>
+                <text x="391" y="35">SEGMENTATION</text>
+              </g>
+              <g filter="url(#glowC)">
+                <rect x="489" y="14" width="130" height="34" rx="8" fill="url(#gradC)"/>
+              </g>
+              <g font-family="JetBrains Mono, monospace" fill="var(--on-accent)" text-anchor="middle">
+                <text x="554" y="30" font-size="9.5" font-weight="500">KNN</text>
+                <text x="554" y="41" font-size="8" opacity="0.82">36 CLASSES</text>
+              </g>
+              <g stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" opacity="0.6">
+                <path class="flow flow-1" d="M130 31 L163 31"/>
+                <path class="flow flow-2" d="M293 31 L326 31"/>
+                <path class="flow flow-3" d="M456 31 L489 31"/>
+              </g>
+            </svg>
+            <figcaption>Handwriting recognition · OpenCV · KNN</figcaption>
+          </figure>
         </div>
-        <div class="timeline-body">
-          <ul>
-            <li>Built a handwriting and digit recognition system using KNN to classify inputs across 36 classes (0–9, a–z).</li>
-            <li>Implemented adaptive thresholding for pixel-level accuracy in character segmentation.</li>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="band-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Projects</p>
+        <h2>Selected projects</h2>
+      </div>
+
+      <div class="projects-grid reveal">
+
+        <div class="card card-accent project-card">
+          <div class="project-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg>
+          </div>
+          <p class="project-meta">Final year · B.Tech</p>
+          <h3>Detection of Artificially Moulded Fingerprints</h3>
+          <p class="project-desc">CNN-based system that detects fingerprint spoofing to protect biometric authentication, analysing finger characteristics to separate genuine prints from artificially moulded replicas.</p>
+          <div class="project-tags">
+            <span class="tag">CNN</span><span class="tag">Deep learning</span><span class="tag">Biometrics</span><span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="card card-accent project-card">
+          <div class="project-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <p class="project-meta">Internship · Tequed Labs</p>
+          <h3>Handwriting &amp; Digit Recognition</h3>
+          <p class="project-desc">K-Nearest Neighbours classifier for handwritten digits (0–9) and letters (a–z) across 36 classes, with adaptive thresholding for precise pixel-level character segmentation.</p>
+          <div class="project-tags">
+            <span class="tag">KNN</span><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">Image processing</span>
+          </div>
+        </div>
+
+        <div class="card card-accent project-card">
+          <div class="project-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <p class="project-meta">Coursework · DBMS</p>
+          <h3>Inventory Control System</h3>
+          <p class="project-desc">Inventory management system for a departmental store handling stock details, updates and report generation, with full CRUD operations behind a web interface built on Apache, MySQL and PHP.</p>
+          <div class="project-tags">
+            <span class="tag">MySQL</span><span class="tag">PHP</span><span class="tag">Apache</span><span class="tag">DBMS</span>
+          </div>
+        </div>
+
+        <!-- ================================================================
+             GEORGE BROWN PROJECT SLOTS — ready to fill in
+
+             Three templates below, commented out. For each real project:
+               1. Delete the surrounding comment markers for ONE block
+               2. Replace TITLE, the meta line, the description and the tags
+               3. Add a repo link if one exists (the commented <a> at the end)
+
+             Left commented deliberately: an empty card on a live page reads
+             as an unfinished site, which is worse than three strong cards.
+             Send me the details and I will wire them up properly.
+
+        <div class="card card-accent project-card">
+          <div class="project-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-5 3 3 5-7"/></svg>
+          </div>
+          <p class="project-meta">George Brown College · T431</p>
+          <h3>PROJECT TITLE</h3>
+          <p class="project-desc">What problem it solved, what you built, and the outcome. Two or three sentences. Name the dataset if it is public.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">EDA</span>
+          </div>
+          <a href="https://github.com/rithikabhargav/REPO" class="tag" target="_blank" rel="noopener" style="margin-top:1rem;align-self:flex-start;">View code &rarr;</a>
+        </div>
+
+        <div class="card card-accent project-card">
+          <div class="project-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+          </div>
+          <p class="project-meta">George Brown College · T431</p>
+          <h3>PROJECT TITLE</h3>
+          <p class="project-desc">What problem it solved, what you built, and the outcome.</p>
+          <div class="project-tags">
+            <span class="tag">PyTorch</span><span class="tag">Computer vision</span>
+          </div>
+        </div>
+
+        <div class="card card-accent project-card">
+          <div class="project-icon" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+          </div>
+          <p class="project-meta">George Brown College · T431</p>
+          <h3>PROJECT TITLE</h3>
+          <p class="project-desc">What problem it solved, what you built, and the outcome.</p>
+          <div class="project-tags">
+            <span class="tag">SQL</span><span class="tag">ETL pipelines</span>
+          </div>
+        </div>
+
+             ================================================================ -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Education</p>
+        <h2>Education &amp; credentials</h2>
+      </div>
+
+      <div class="edu-grid reveal">
+        <div class="card card-accent edu-card">
+          <h3>Post Graduate Diploma — Applied AI Solutions Development (T431)</h3>
+          <p class="edu-school">George Brown College, Toronto, ON</p>
+          <p class="edu-period">May 2026 – Present</p>
+          <span class="edu-badge">In progress</span>
+          <p class="coursework-label">Relevant coursework</p>
+          <ul class="coursework">
+            <li>End-to-end ML pipelines: ETL, preprocessing, feature engineering, training, validation, evaluation</li>
+            <li>Supervised learning and deep learning applied to real classification and prediction problems</li>
+            <li>EDA, feature selection, and hyperparameter tuning in Python</li>
+            <li>AI solution development following industry practice in experimentation and reproducibility</li>
           </ul>
         </div>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <p class="section-label">// 03. projects</p>
-    <h2>Academic projects</h2>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-icon">🔍</div>
-        <p class="project-title">Fingerprint Spoof Detection</p>
-        <p class="project-desc">CNN-based system to detect artificially moulded fingerprint spoofing, ensuring accurate biometric authentication. Analyzed finger characteristics to distinguish real from synthetic prints.</p>
-        <div class="project-tags">
-          <span class="tag">CNN</span>
-          <span class="tag">Deep learning</span>
-          <span class="tag">Biometrics</span>
-          <span class="tag">Python</span>
+        <div class="card card-accent edu-card">
+          <h3>Bachelor of Technology — Computer Science</h3>
+          <p class="edu-school">Dayananda Sagar Academy of Technology &amp; Management, India</p>
+          <p class="edu-period">Graduated Aug 2022 · GPA 7.65 / 10</p>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-icon">📦</div>
-        <p class="project-title">Inventory Control System</p>
-        <p class="project-desc">Inventory management system for a department store with full CRUD operations, report generation, and a web interface. Built with Apache, MySQL, PHP, and HTML/CSS.</p>
-        <div class="project-tags">
-          <span class="tag">MySQL</span>
-          <span class="tag">PHP</span>
-          <span class="tag">Apache</span>
-          <span class="tag">DBMS</span>
-        </div>
-      </div>
+      <h3 class="sub-head">Transcripts &amp; credential documents</h3>
+      <p class="sub-note">Academic records, available to view or download directly.</p>
 
-      <div class="project-card">
-        <div class="project-icon">✍️</div>
-        <p class="project-title">Handwriting & Digit Recognition</p>
-        <p class="project-desc">ML system using KNN to classify handwritten digits (0–9) and letters (a–z) with adaptive thresholding for precise pixel-level segmentation.</p>
-        <div class="project-tags">
-          <span class="tag">KNN</span>
-          <span class="tag">OpenCV</span>
-          <span class="tag">Python</span>
-          <span class="tag">Image processing</span>
-        </div>
+      <div class="doc-grid reveal">
+        <a href="transcripts.pdf" target="_blank" rel="noopener" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">Academic transcript</span>
+            <span class="contact-value">B.E. Computer Science &middot; VTU</span>
+          </span>
+        </a>
+
+        <!-- === ADD WHEN AVAILABLE ===============================================
+             Save the file into this folder with the EXACT name in the href, then
+             delete this comment's opening and closing markers to switch the tile on.
+
+        <a href="gbc-transcript.pdf" target="_blank" rel="noopener" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">Transcript &middot; unofficial</span>
+            <span class="contact-value">George Brown College</span>
+          </span>
+        </a>
+
+        <a href="recommendation-letter.pdf" target="_blank" rel="noopener" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">Letter of recommendation</span>
+            <span class="contact-value">Name &middot; Company</span>
+          </span>
+        </a>
+             ===================================================================== -->
       </div>
 
     </div>
   </section>
 
-  <!-- ACCOMPLISHMENTS -->
-  <section id="accomplishments">
-    <p class="section-label">// 04. accomplishments</p>
-    <h2>Highlights</h2>
-    <div class="accomplishments-list">
-      <div class="accomplishment-item">🏆 <strong>1st place</strong> — COVID-19 Prediction Hackathon, Tequed Labs</div>
-      <div class="accomplishment-item">🤖 Demonstrated an Arduino-controlled firefighting robot at the <strong>Havells National Conference</strong>; 4th-year project published in UCRT (International Journal of Creative and Research Technology)</div>
-      <div class="accomplishment-item">🎤 Presented at the <strong>International Conference on Emerging Trends in Engineering</strong>, Raja Rajeswari College</div>
-      <div class="accomplishment-item">🛡️ Volunteered at <strong>NCDRC (National Cyber Defence Research Centre)</strong> events; conducted cybersecurity workshops for kids</div>
+  <!-- ============ ACCOMPLISHMENTS ============ -->
+  <section id="accomplishments" class="band-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Recognition</p>
+        <h2>Academic awards &amp; recognition</h2>
+        <p class="section-intro">Academic awards, published research, and conference presentations.</p>
+      </div>
+
+      <ul class="achieve-list reveal">
+        <li>
+          <span class="achieve-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </span>
+          <span><strong>First place</strong> — COVID-19 Prediction Machine Learning Hackathon, Tequed Labs</span>
+        </li>
+        <li>
+          <span class="achieve-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span>Final-year project <strong>published in IJCRT</strong> (International Journal of Creative Research Thoughts)</span>
+        </li>
+        <li>
+          <span class="achieve-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+          </span>
+          <span>Demonstrated an Arduino-controlled firefighting robot at the <strong>Havells National Conference</strong></span>
+        </li>
+        <li>
+          <span class="achieve-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+          </span>
+          <span>Presented at the <strong>International Conference on Emerging Trends in Engineering</strong></span>
+        </li>
+        <li>
+          <span class="achieve-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <span>Volunteered at <strong>NCDRC</strong> cybersecurity workshops and public awareness events</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <p class="section-label">// 05. education</p>
-    <h2>Education</h2>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <p class="edu-degree">PG Diploma — Applied AI Solutions Development</p>
-        <p class="edu-school">George Brown College, Toronto</p>
-        <p class="edu-period">May 2026 – Present</p>
-        <span class="edu-badge">In progress</span>
-      </div>
-      <div class="edu-card">
-        <p class="edu-degree">B.Tech — Computer Science</p>
-        <p class="edu-school">Dayananda Sagar Academy of Technology & Management, India</p>
-        <p class="edu-period">Graduated Aug 2022 · GPA 7.65</p>
-      </div>
-    </div>
-  </section>
+  <!-- ============ REFERENCES ============ ================================
+       Reference letters are OPTIONAL — employers ask for reference contacts
+       after an interview, not letters up front. Never publish a referee's
+       phone number or email here.
 
-  <!-- TESTIMONIALS / REFERENCES -->
-  <section id="testimonials">
-    <p class="section-label">// 06. references</p>
-    <h2>Letters of recommendation</h2>
-    <div class="testimonial-grid">
+       When you have a referee's written permission, delete the .ref-note
+       card below and uncomment this grid, filling in the real details:
 
-      <!-- Reference 1 placeholder -->
-      <div class="testimonial-card placeholder">
-        <div class="placeholder-icon">📝</div>
-        <p class="placeholder-text">Reference from <strong style="color: var(--text);">Cyient / LTIMindtree</strong> — add a quote and your reference's name here once you have their letter.</p>
-      </div>
-
-      <!-- Reference 2 placeholder -->
-      <div class="testimonial-card placeholder">
-        <div class="placeholder-icon">📝</div>
-        <p class="placeholder-text">Reference from <strong style="color: var(--text);">George Brown College</strong> — add a quote and your professor's name here once confirmed.</p>
-      </div>
-
-    </div>
-
-    <!-- Instructions for filling in -->
-    <div style="margin-top: 1.25rem; padding: 1rem 1.25rem; background: rgba(108,142,255,0.07); border: 1px solid rgba(108,142,255,0.2); border-radius: 10px; font-size: 13px; color: var(--muted);">
-      <strong style="color: var(--accent);">How to add your references:</strong> Open <code style="background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;">index.html</code>, find the two <code style="background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;">testimonial-card placeholder</code> sections, and replace with the testimonial template shown in the HTML comments below them.
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">// 07. contact</p>
-    <h2>Get in touch</h2>
-    <div class="contact-grid">
-      <a href="mailto:rithikabhargav@gmail.com" class="contact-card">
-        <div class="contact-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </div>
+  <div class="testimonial-grid">
+    <div class="card testimonial-card">
+      <p class="testimonial-text">Two or three sentences in their words, ideally naming a specific thing you did.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" aria-hidden="true">AB</div>
         <div>
-          <p class="contact-label">Email</p>
-          <p class="contact-value">rithikabhargav@gmail.com</p>
+          <p class="author-name">Full Name</p>
+          <p class="author-title">Their Title &middot; Company</p>
         </div>
-      </a>
-      <a href="tel:+16479962250" class="contact-card">
-        <div class="contact-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.5 2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
+      </div>
+    </div>
+  </div>
+       ==================================================================== -->
+  <section id="references">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">References</p>
+        <h2>References</h2>
+      </div>
+
+      <div class="card ref-note reveal">
+        <span class="ref-icon" aria-hidden="true">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="11" x2="13" y2="11"/></svg>
+        </span>
         <div>
-          <p class="contact-label">Phone</p>
-          <p class="contact-value">+1 647 996 2250</p>
+          <h3>Available on request</h3>
+          <p>Professional references from my roles at Cyient, LTIMindtree and Procom, along with faculty references from George Brown College, are available on request. Please <a href="mailto:rithikabhargav@gmail.com">reach out by email</a> and I will share the relevant contacts.</p>
         </div>
-      </a>
-      <a href="mailto:101669607@georgebrown.ca" class="contact-card">
-        <div class="contact-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div>
-          <p class="contact-label">College email</p>
-          <p class="contact-value">101669607@georgebrown.ca</p>
-        </div>
-      </a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-card">
-        <div class="contact-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </div>
-        <div>
-          <p class="contact-label">LinkedIn</p>
-          <p class="contact-value">Add your LinkedIn URL →</p>
-        </div>
-      </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="band-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Get in touch</h2>
+        <p class="section-intro">I am actively looking for an AI/ML internship in the Greater Toronto Area. Email is the fastest way to reach me.</p>
+      </div>
+
+      <div class="contact-grid reveal">
+        <a href="mailto:rithikabhargav@gmail.com" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">Email</span>
+            <span class="contact-value">rithikabhargav@gmail.com</span>
+          </span>
+        </a>
+
+        <!-- Uses www rather than the ca. regional subdomain, so the link opens
+             directly for viewers outside Canada instead of being geo-redirected. -->
+        <a href="https://www.linkedin.com/in/rithika-bhargav-k-7b3a4420a/" target="_blank" rel="noopener" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">Connect with me</span>
+          </span>
+        </a>
+
+        <a href="https://github.com/rithikabhargav" target="_blank" rel="noopener" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 4.44-2.28 4.44-5.24a4.76 4.76 0 0 0-1.34-3.31 4.42 4.42 0 0 0-.08-3.33s-1.44-.44-4.7 1.78a11.5 11.5 0 0 0-6.2 0C4.02 2.2 2.58 2.64 2.58 2.64a4.42 4.42 0 0 0-.08 3.33A4.76 4.76 0 0 0 1.16 9.3c0 2.94 1.3 4.87 4.44 5.22a3.37 3.37 0 0 0-.94 2.6V21"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/rithikabhargav</span>
+          </span>
+        </a>
+
+        <a href="tel:+16479962250" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.5 2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">Phone</span>
+            <span class="contact-value">+1 647 996 2250</span>
+          </span>
+        </a>
+
+        <a href="mailto:101669607@georgebrown.ca" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">College email</span>
+            <span class="contact-value">101669607@georgebrown.ca</span>
+          </span>
+        </a>
+
+        <a href="resume.pdf" download="Rithika_Bhargav_Khandavilli_Resume.pdf" class="card card-accent contact-card">
+          <span class="contact-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </span>
+          <span>
+            <span class="contact-label">Résumé</span>
+            <span class="contact-value">Download PDF</span>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <span>built by rithika bhargav · toronto · 2026</span>
+  <div class="footer-inner">
+    <span>&copy; <span id="year">2026</span> Rithika Bhargav Khandavilli · Toronto, Canada</span>
+    <span class="footer-links">
+      <a href="mailto:rithikabhargav@gmail.com">Email</a>
+      <a href="https://github.com/rithikabhargav" target="_blank" rel="noopener">GitHub</a>
+      <a href="resume.pdf" download="Rithika_Bhargav_Khandavilli_Resume.pdf">Résumé</a>
+    </span>
+  </div>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rithika Bhargav Khandavilli",
+  "jobTitle": "AI/ML Engineer",
+  "email": "rithikabhargav@gmail.com",
+  "telephone": "+1-647-996-2250",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Toronto",
+    "addressRegion": "ON",
+    "addressCountry": "CA"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "George Brown College" },
+    { "@type": "CollegeOrUniversity", "name": "Dayananda Sagar Academy of Technology & Management" }
+  ],
+  "knowsAbout": [
+    "Machine Learning", "Deep Learning", "Computer Vision", "TensorFlow",
+    "PyTorch", "Convolutional Neural Networks", "Sensor Fusion", "ADAS",
+    "TensorRT", "CUDA", "Python", "SQL"
+  ],
+  "sameAs": ["https://github.com/rithikabhargav"]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  document.documentElement.classList.add('js');
+
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Theme toggle ---------- */
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var meta = document.getElementById('metaTheme');
+    if (!btn) return;
+
+    var BG = { light: '#ffffff', dark: '#080b16' };
+
+    function apply(theme) {
+      root.setAttribute('data-theme', theme);
+      if (meta) meta.setAttribute('content', BG[theme]);
+      btn.setAttribute('aria-label',
+        theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      try { localStorage.setItem('rb-theme', theme); } catch (e) {}
+    }
+
+    apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
+    btn.addEventListener('click', function () {
+      apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  })();
+
+  /* ---------- Sticky header shadow ---------- */
+  var header = document.getElementById('siteHeader');
+  var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || reduceMotion) {
+    Array.prototype.forEach.call(revealEls, function (el) { el.classList.add('is-visible'); });
+  } else {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObs.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    Array.prototype.forEach.call(revealEls, function (el) { revealObs.observe(el); });
+  }
+
+  /* ---------- Active nav link ---------- */
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {}, targets = [];
+    links.forEach(function (link) {
+      var el = document.querySelector(link.getAttribute('href'));
+      if (el) { byId[el.id] = link; targets.push(el); }
+    });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = byId[entry.target.id];
+        if (!link || !entry.isIntersecting) return;
+        links.forEach(function (l) { l.removeAttribute('aria-current'); });
+        link.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    targets.forEach(function (t) { obs.observe(t); });
+  })();
+
+})();
+</script>
 
 </body>
 </html>

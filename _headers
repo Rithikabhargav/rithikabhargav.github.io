@@ -1,0 +1,11 @@
+# Netlify / Cloudflare Pages response headers.
+# Ignored by GitHub Pages, which does not support custom headers.
+#
+# X-Robots-Tag is enforced by crawlers more reliably than robots.txt, because
+# robots.txt is only a request and does not stop a page being listed when it is
+# linked from elsewhere. Applied to the PDFs only — the portfolio pages
+# themselves are meant to be findable.
+
+/*.pdf
+  X-Robots-Tag: noindex, noarchive, nosnippet
+  Referrer-Policy: no-referrer
