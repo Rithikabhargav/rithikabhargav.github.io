@@ -283,12 +283,15 @@
   }
 
   .section-head { margin-bottom: 3.25rem; max-width: 720px; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-family: var(--mono); font-size: 11.5px; font-weight: 500;
-    color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 1rem; padding: 5px 13px;
-    background: var(--accent-tint); border: 1px solid var(--accent-line); border-radius: 999px;
+  /* An accent rule instead of an eyebrow pill. The old pill repeated a word
+     that was already in the h2 below it (SKILLS over "Technical skills"), so it
+     labelled nothing. The rule keeps the accent colour and the vertical rhythm
+     without the duplication, and needs no markup of its own. */
+  .section-head::before {
+    content: ''; display: block;
+    width: 44px; height: 3px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    margin-bottom: 1.35rem;
   }
   h2 {
     font-size: clamp(1.8rem, 3.3vw, 2.35rem); font-weight: 700;
@@ -794,7 +797,6 @@
   <section id="about">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">About</p>
         <h2>Background</h2>
         <p class="about-lead">Building AI Beyond the Model</p>
       </div>
@@ -849,7 +851,6 @@
   <section id="skills" class="band-alt">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Skills</p>
         <h2>Technical skills</h2>
       </div>
 
@@ -929,7 +930,6 @@
   <section id="projects">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Projects</p>
         <h2>Projects &amp; work samples</h2>
       </div>
 
@@ -1015,7 +1015,6 @@
   <section id="education" class="band-alt">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Education</p>
         <h2>Education</h2>
       </div>
 
@@ -1059,7 +1058,6 @@
   <section id="experience">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Experience</p>
         <h2>Professional experience</h2>
         <p class="section-intro">Each role below includes a diagram of the pipeline I worked on.</p>
       </div>
@@ -1266,7 +1264,6 @@
   <section id="accomplishments" class="band-alt">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Recognition</p>
         <h2>Academic awards &amp; recognition</h2>
         <p class="section-intro">Academic awards, published research, and conference presentations.</p>
       </div>
@@ -1314,7 +1311,6 @@
   <section id="documents">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Documents</p>
         <h2>Credentials &amp; documents</h2>
         <p class="section-intro">Academic records and supporting documents, available to view or download directly.</p>
       </div>
@@ -1392,7 +1388,6 @@
   <section id="contact" class="band-alt">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Contact</p>
         <h2>Get in touch</h2>
         <p class="section-intro">I am actively looking for an AI/ML internship in the Greater Toronto Area. Email is the fastest way to reach me.</p>
       </div>
